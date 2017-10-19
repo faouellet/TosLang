@@ -1,0 +1,31 @@
+version: 0.0.{build}
+
+pull_requests:
+  do_not_increment_build_number: true
+
+branches:
+  only:
+  - master
+
+os:
+- Visual Studio 2014 CTP4
+- Visual Studio 2015
+
+configuration:
+- Debug
+- Release
+
+platform:
+- x86
+- x64
+
+build_script:
+- mkdir cmake-build
+- cd cmake-build
+- cmake ..
+- cmake --build .
+- cmake --build . --config Release
+
+test: off
+
+deploy: off

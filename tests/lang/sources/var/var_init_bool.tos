@@ -1,0 +1,2 @@
+var MyTrueVar : Bool = True;
+var MyFalseVar : Bool = False;

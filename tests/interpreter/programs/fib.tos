@@ -1,0 +1,38 @@
+// EXPECTED: 55
+// EXPECTED: 55
+
+fn fibRec(i : Int) -> Int
+{
+	if i < 2
+	{
+		return i;
+	}
+	
+	return fibRec(i - 1) + fibRec(i - 2);
+}
+
+fn fibSeq(i : Int) -> Int
+{
+	var cpt : Int = 1;
+	var fib1 : Int = 1;
+	var fib2 : Int = 0;
+	var temp: Int;
+
+	while cpt < i
+	{
+		temp = fib1 + fib2;
+		fib2 = fib1;
+		fib1 = temp;
+		cpt = cpt + 1;
+	}
+	
+	return fib1;
+}
+
+fn main() -> Void
+{
+	print fibRec(10);
+	print fibSeq(10);
+	
+	return;
+}

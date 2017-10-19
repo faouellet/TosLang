@@ -1,0 +1,3 @@
+ProgramDecl
+	FunctionDecl: main Return Type: 4 SrcLoc: 1, 6
+		CompoundStmt
