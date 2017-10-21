@@ -1,87 +1,23 @@
 language: cpp
 sudo: false
 
-addons:
-  apt:
-    packages:
-      - g++-5
-      - g++-6
-    sources: &sources
-      - ubuntu-toolchain-r-test
-
-
-cache:
-  directories:
-    - ${TRAVIS_BUILD_DIR}/deps/llvm-3.9.0
-    - ${TRAVIS_BUILD_DIR}/deps/llvm-4.0.0
-    - ${TRAVIS_BUILD_DIR}/deps/llvm-5.0.0
-
 
 matrix:
   include:
-    # Clang 3.9
+    # Linux Clang
     - os: linux
-      env: COMPILER=clang++-3.9 LLVM_VERSION=3.9.0
       compiler: clang
 
-    # Clang 4.0
+    # Linux GCC
     - os: linux
-      env: COMPILER=clang++-4.0 LLVM_VERSION=4.0.0
-      compiler: clang
-
-    # Clang 5.0
-    - os: linux
-      env: COMPILER=clang++-5.0 LLVM_VERSION=5.0.0
-      compiler: clang
-
-    # GCC 5
-    - os: linux
-      env: COMPILER=g++-5
       compiler: gcc
-
-    # GCC 6
-    - os: linux
-      env: COMPILER=g++-6
-      compiler: gcc
-
-    # GCC 7
-    - os: linux
-      env: COMPILER=g++-7
-      compiler: gcc
-
-    # Xcode 6.4
-    - os: osx
-      osx_image: xcode6.4
-
-    # Xcode 7.3
-    - os: osx
-      osx_image: xcode7.3
-
-    # Xcode 8
-    - os: osx
-      osx_image: xcode8
 
 
 install:
-  # All the dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-  - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
-
-  - export CXX=${COMPILER}
-
-  # Installing a recent version of Ruby (needed for Homebrew)
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      rvm use 2.3 --install --binary --fuzzy
-      gem install ruby-progressbar tilt
-    fi
-
   # Getting Boost for testing
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then 
       sudo apt-get install libboost-test-dev; 
-    elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
-      brew install boost; 
     fi
 
   # Getting CMake for building
@@ -90,8 +26,6 @@ install:
       CMAKE_URL="https://cmake.org/files/v3.8/cmake-3.8.0-Linux-x86_64.tar.gz"
       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
-    else
-      brew upgrade cmake || brew install cmake
     fi
   - cmake --version
 
@@ -99,34 +33,8 @@ install:
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       sudo apt-get install doxygen; 
-    elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
-      brew install doxygen; 
     fi
   
-  - |
-    if [[ "${LLVM_VERSION}" != "" ]]; then
-      LLVM_DIR=${DEPS_DIR}/llvm-${LLVM_VERSION}
-      if [[ -z "$(ls -A ${LLVM_DIR})" ]]; then
-        LLVM_URL="http://llvm.org/releases/${LLVM_VERSION}/llvm-${LLVM_VERSION}.src.tar.xz"
-        LIBCXX_URL="http://llvm.org/releases/${LLVM_VERSION}/libcxx-${LLVM_VERSION}.src.tar.xz"
-        LIBCXXABI_URL="http://llvm.org/releases/${LLVM_VERSION}/libcxxabi-${LLVM_VERSION}.src.tar.xz"
-        CLANG_URL="http://llvm.org/releases/${LLVM_VERSION}/clang+llvm-${LLVM_VERSION}-x86_64-linux-gnu-ubuntu-14.04.tar.xz"
-        mkdir -p ${LLVM_DIR} ${LLVM_DIR}/build ${LLVM_DIR}/projects/libcxx ${LLVM_DIR}/projects/libcxxabi ${LLVM_DIR}/clang
-        travis_retry wget --quiet -O - ${LLVM_URL}      | tar --strip-components=1 -xJ -C ${LLVM_DIR}
-        travis_retry wget --quiet -O - ${LIBCXX_URL}    | tar --strip-components=1 -xJ -C ${LLVM_DIR}/projects/libcxx
-        travis_retry wget --quiet -O - ${LIBCXXABI_URL} | tar --strip-components=1 -xJ -C ${LLVM_DIR}/projects/libcxxabi
-        travis_retry wget --quiet -O - ${CLANG_URL}     | tar --strip-components=1 -xJ -C ${LLVM_DIR}/clang
-        (cd ${LLVM_DIR}/build && cmake .. -DCMAKE_INSTALL_PREFIX=${LLVM_DIR}/install -DCMAKE_CXX_COMPILER=clang++)
-        (cd ${LLVM_DIR}/build/projects/libcxx && make install -j2)
-        (cd ${LLVM_DIR}/build/projects/libcxxabi && make install -j2)
-      fi
-      export CXXFLAGS="-nostdinc++ -isystem ${LLVM_DIR}/install/include/c++/v1"
-      export LDFLAGS="-L ${LLVM_DIR}/install/lib -l c++ -l c++abi"
-      export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${LLVM_DIR}/install/lib"
-      export PATH="${LLVM_DIR}/clang/bin:${PATH}"
-    fi
-  - ${CXX} --version
-
   # Getting latest version of LCOV for the linux debug build
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" && "$CONFIG" == "DEBUG" ]]; then
