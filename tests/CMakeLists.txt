@@ -4,7 +4,6 @@ set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON) 
 set(Boost_USE_STATIC_RUNTIME OFF)
 
-include_directories("${CMAKE_SOURCE_DIR}/Tostitos/machine")
 include_directories("${CMAKE_SOURCE_DIR}/TosLang")
 
 # Copy test files
@@ -33,12 +32,6 @@ if(Boost_FOUND)
         target_link_libraries(Tests ${Boost_LIBRARIES} lang machine)
     else()
         include(../cmake/BoostTestHelpers.cmake)
-
-		# Machine tests
-        add_boost_test(machine/cpu_tests.cpp machine)
-		add_boost_test(machine/instruction_tests.cpp machine)
-        add_boost_test(machine/interpreter_tests.cpp machine)
-        add_boost_test(machine/utils_tests.cpp machine)
 		
 		# TosLang tests
 		add_boost_test(lang/ast_printer_tests.cpp lang)

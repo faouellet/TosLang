@@ -53,14 +53,14 @@ add_subdirectory (TosLang)
 add_subdirectory (tests)
 
 # add a target to generate API documentation with Doxygen
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-    configure_file(Doxyfile.in ${PROJECT_BINARY_DIR}/Doxyfile @ONLY IMMEDIATE)
-    if(NOT MSVC)
-        add_custom_target(doc 
-            COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
-            WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
-            COMMENT "Generating API documentation with Doxygen" VERBATIM
-        )
-    endif()
-endif(DOXYGEN_FOUND)
+#find_package(Doxygen)
+#if(DOXYGEN_FOUND)
+#    configure_file(Doxyfile.in ${PROJECT_BINARY_DIR}/Doxyfile @ONLY IMMEDIATE)
+#    if(NOT MSVC)
+#        add_custom_target(doc 
+#            COMMAND ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/Doxyfile
+#            WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
+#            COMMENT "Generating API documentation with Doxygen" VERBATIM
+#        )
+#    endif()
+#endif(DOXYGEN_FOUND)
