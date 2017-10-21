@@ -1,92 +1,65 @@
 language: cpp
+sudo: false
 
 
-# Listing all possible values that all the environment variables can take  
-env:
-  global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
-   - secure: "a0oCq1Ga/3Y2dosiwmEOGGXhVWaj959zYi8GuecbKa1yjZwsHZ9rl4Q0ezeUfYndUhmFUlfACyQrky9ALNLnFiuABXdyPrzBM2oGnKs6bmUji3ZpMJVK5tVoXd1Z4uup1LsOGrOzNd/qoDUZR8/aT/w5Br/7iVpLaEc5H+Ru3/CUVbkIy2oMjyffqusmt84QDWQCwbR+NydFGuR9U46tfiZp9kplkmdike5pc7aP4FF+JsoopxhyCZJxrYm6ha1DxieCANyMwkEQhiImvDtvRM0NmpPoaX0TMP8VrdOD7kXf7cq7Jbvj3gImMBuUlcGUE+CApctqF4BVjjvBLWidUWHKsP/KcWhYREDwLIqimJWzS5+LLF7inxtWDI6dpFWBbHh90LGxMemtjTkc6ODbQO4BLF2kRyzcl1cmfLiAscONMYzWRrmLw/Y5aRDqUa+wpGd95Ct6ADG5TVN1Yl2/6kDU0MORrfWU0rqaTMNOuVkULzS1Bcd1gsMCavCjHf2HGcwXcy7zHGj9Gm94OkT0jdTpWzMPUJUEBHhxydKQM8VDJmWzxSt5y/JOcbfETv1cH8g+uNW1+io+6Rc3aILnIwyc2FlPGOCmmibbICxW5d2/vlzFRWruR77lEs02pGVVSsXaIycOgW12KqRY25Pi/WHakiqo0u8E6C5itap68ok="
-  #matrix:
-  #- SANITIZE=sanitize-address
-  #- SANITIZE=sanitize-leak
+addons:
+  apt:
+    packages:
+      #- valgrind
+      - g++-5
+      - g++-6
+      - clang++-3.7
+      - clang++-3.8
+      - clang++-3.9
+    sources: &sources
+      -ubuntu-toolchain-r-test
 
-   
+
 matrix:
   include:
-##### Linux GCC Debug build #####
-    - compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages: 
-            - g++-5
-      os: linux
-      env: CONFIG=DEBUG COMPILER=g++-5 
-##### Linux GCC Release build #####
-    - compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages: 
-            - g++-5
-      os: linux
-      env: CONFIG=RELEASE COMPILER=g++-5
-##### OSX GCC Debug build #####
-    - compiler: gcc
-      os: osx
+    # Clang 3.7
+    - os: linux
+      env: COMPILER=clang++-3.7
+      compiler: clang
+
+    # Clang 3.8
+    - os: linux
+      env: COMPILER=clang++-3.8
+      compiler: clang
+
+    # Clang 3.9
+    - os: linux
+      env: COMPILER=clang++-3.9
+      compiler: clang
+
+    # GCC 5
+    - os: linux
+      env: COMPILER=g++-5
+      compiler: gcc
+
+    # GCC 6
+    - os: linux
+      env: COMPILER=g++-6
+      compiler: gcc
+
+    # Xcode 6.4
+    - os: osx
       osx_image: xcode6.4
-      env: CONFIG=DEBUG COMPILER=g++-5
-##### OSX GCC Release build #####
-    - compiler: gcc
-      os: osx
-      osx_image: xcode6.4
-      env: CONFIG=RELEASE COMPILER=g++-5
-##### Linux Clang Debug build #####
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-precise-3.7
-          packages: 
-            - clang-3.7
-      os: linux
-      env: CONFIG=DEBUG COMPILER=clang++-3.7
-##### Linux Clang Release build #####
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-precise-3.7
-          packages: 
-            - clang-3.7
-      os: linux
-      env: CONFIG=RELEASE COMPILER=clang++-3.7
-##### OSX Clang Debug build #####
-    - compiler: clang
-      os: osx
-      osx_image: xcode6.4
-      env: CONFIG=DEBUG COMPILER=clang++
-##### OSX Clang Release build #####
-    - compiler: clang
-      os: osx
-      osx_image: xcode6.4
-      env: CONFIG=RELEASE COMPILER=clang++
-##### Currently allowing Linux+Clang builds to fail because of apt repo problems #####
-  allow_failures:
-    - compiler: clang
-      os: linux
-    - compiler: gcc
-      os: osx
+
+    # Xcode 7.3
+    - os: osx
+      osx_image: xcode7.3
+
+    # Xcode 8
+    - os: osx
+      osx_image: xcode8
 
 
 # Addons for the Coverity static analysis service
 addons:
   coverity_scan:
     project:
-      name: "faouellet/Tostitos"
+      name: "faouellet/TosLang"
       description: "Build submitted via Travis CI"
     notification_email: faouellet@gmail.com
     build_command_prepend: "mkdir build; cd build; cmake .."
@@ -94,25 +67,25 @@ addons:
     branch_pattern: coverity_scan
 
 
-before_install:
-  - if [["$TRAVIS_OS_NAME" == "linux"]]; then sudo apt-get update -qq; fi
-  - if [["$TRAVIS_OS_NAME" == "osx"]]; then brew update; fi
+install:
+  # Installing a recent version of Ruby (needed for Homebrew)
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      rvm use 2.1 --install --binary --fuzzy
+      gem install ruby-progressbar tilt
+    fi
 
-
-install:  
-  # Getting CppCheck for static analysis
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install cppcheck; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install cppcheck; fi
-  
-  # Getting g++-5 for the OSX builds
-  - if [[ "$TRAVIS_OS_NAME" == "osx" && "$COMPILER" == "g++-5" ]]; then brew install homebrew/versions/gcc5; fi
-  
   # Getting Boost for testing
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libboost-test-dev; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install boost; fi
+
+  # Getting Doxygen for documentation
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install doxygen; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install doxygen; fi
   
   # Getting latest version of LCOV for the linux debug build
   - |
-    if [[ "$TRAVIS_OS_NAME" == "linux" && "$CONFIG" == "DEBUG" && ${COVERITY_SCAN_BRANCH} != 1 ]]; then
+    if [[ "$TRAVIS_OS_NAME" == "linux" && "$CONFIG" == "DEBUG" ]]; then
        wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz
        tar xf lcov_1.11.orig.tar.gz
        sudo make -C lcov-1.11/ install
@@ -123,36 +96,31 @@ install:
 
 
 before_script:
+  # Set up the git identity (for pushing documentation)
+  - git config --global user.name "Travis bot"
+  - git config --global user.email "<>"
+
   # Initialize coverage to 0 on the Linux debug build
   - |
-    if [[ "$TRAVIS_OS_NAME" == "linux" && "$CONFIG" == "DEBUG" && ${COVERITY_SCAN_BRANCH} != 1 ]]; then 
+    if [[ "$TRAVIS_OS_NAME" == "linux" && "$CONFIG" == "DEBUG" ]]; then 
        cd ${TRAVIS_BUILD_DIR}
        lcov --directory . --zerocounters
     fi
 
 
-script:  
-  - if [[ ${COVERITY_SCAN_BRANCH} != 1 ]]; then 
-        cppcheck --error-exitcode=1 --quiet .;
-    fi
-    
+script:    
   - mkdir build
   - cd build
-  
-  # The coverity branch doesn't require explicit build commands
-  - |
-    if [[ ${COVERITY_SCAN_BRANCH} != 1 ]]; then
-       cmake -DCMAKE_BUILD_TYPE=$CONFIG -DCMAKE_CXX_COMPILER=$COMPILER ..
-       make
-       ctest
-       #python testrunner.py ${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}
-    fi
+  - cmake -DCMAKE_BUILD_TYPE=$CONFIG -DCMAKE_CXX_COMPILER=$COMPILER ..
+  - make
+  - ctest
+  #- python testrunner.py ${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}
 
 
 after_success:
   # Sending coverage info collected with the Linux debug build
   - |
-    if [[ "$TRAVIS_OS_NAME" == "linux" && "$CONFIG" == "DEBUG" && ${COVERITY_SCAN_BRANCH} != 1 ]]; then 
+    if [[ "$TRAVIS_OS_NAME" == "linux" && "$CONFIG" == "DEBUG" ]]; then 
        cd ${TRAVIS_BUILD_DIR}
        lcov --directory . --capture --output-file coverage.info
        lcov --remove coverage.info 'tests/*' '/usr/*' --output-file coverage.info
