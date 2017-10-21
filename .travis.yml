@@ -88,6 +88,8 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install doxygen; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install doxygen; fi
   
+  - "${LLVM_VERSION}"
+
   - |
     if [[ "${LLVM_VERSION}" != "" ]]; then
       LLVM_DIR=${DEPS_DIR}/llvm-${LLVM_VERSION}
