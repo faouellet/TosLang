@@ -1,5 +1,5 @@
-#ifndef VIRTUAL_OPERAND__TOSTITOS
-#define VIRTUAL_OPERAND__TOSTITOS
+#ifndef VIRTUAL_OPERAND__TOSLANG
+#define VIRTUAL_OPERAND__TOSLANG
 
 #include <array>
 
@@ -42,4 +42,4 @@ namespace TosLang
     }
 }
 
-#endif // VIRTUAL_OPERAND__TOSTITOS
+#endif // VIRTUAL_OPERAND__TOSLANG

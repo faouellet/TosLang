@@ -1,5 +1,5 @@
-#ifndef TOSLANG_PARSER_FIXTURE_H__TOSTITOS
-#define TOSLANG_PARSER_FIXTURE_H__TOSTITOS
+#ifndef TOSLANG_PARSER_FIXTURE_H__TOSLANG
+#define TOSLANG_PARSER_FIXTURE_H__TOSLANG
 
 #include "AST/ast.h"
 #include "AST/declarations.h"
@@ -87,4 +87,4 @@ struct TosLangParserFixture
     std::streambuf* oldBuffer;              /*!< Original stderr buffer */
 };
 
-#endif // TOSLANG_PARSER_FIXTURE_H__TOSTITOS
+#endif // TOSLANG_PARSER_FIXTURE_H__TOSLANG

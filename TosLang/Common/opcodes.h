@@ -1,5 +1,5 @@
-#ifndef OPCODE_H__TOSTITOS
-#define OPCODE_H__TOSTITOS
+#ifndef OPCODE_H__TOSLANG
+#define OPCODE_H__TOSLANG
 
 namespace TosLang
 {
@@ -32,4 +32,4 @@ namespace TosLang
     }
 }
 
-#endif // OPCODE_H__TOSTITOS
+#endif // OPCODE_H__TOSLANG

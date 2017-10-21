@@ -1,5 +1,5 @@
-#ifndef EXPR_H__TOSTITOS
-#define EXPR_H__TOSTITOS
+#ifndef EXPR_H__TOSLANG
+#define EXPR_H__TOSLANG
 
 #include "ast.h"
 #include "../Common/opcodes.h"
@@ -284,4 +284,4 @@ namespace TosLang
     }
 }
 
-#endif // EXPR_H__TOSTITOS
+#endif // EXPR_H__TOSLANG

@@ -1,5 +1,5 @@
-#ifndef TYPE_H__TOSTITOS
-#define TYPE_H__TOSTITOS
+#ifndef TYPE_H__TOSLANG
+#define TYPE_H__TOSLANG
 
 namespace TosLang
 {
@@ -38,4 +38,4 @@ namespace TosLang
     }
 }
 
-#endif // TYPE_H__TOSTITOS
+#endif // TYPE_H__TOSLANG

@@ -1,5 +1,5 @@
-#ifndef AST_PRINTER_H__TOSTITOS
-#define AST_PRINTER_H__TOSTITOS
+#ifndef AST_PRINTER_H__TOSLANG
+#define AST_PRINTER_H__TOSLANG
 
 #include "../Common/astvisitor.h"
 
@@ -306,4 +306,4 @@ namespace TosLang
     }
 }
 
-#endif // AST_PRINTER_H__TOSTITOS
+#endif // AST_PRINTER_H__TOSLANG

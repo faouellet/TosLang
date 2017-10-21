@@ -1,5 +1,5 @@
-#ifndef STMT_H__TOSTITOS
-#define STMT_H__TOSTITOS
+#ifndef STMT_H__TOSLANG
+#define STMT_H__TOSLANG
 
 #include "ast.h"
 #include "expressions.h"
@@ -263,4 +263,4 @@ namespace TosLang
     }
 }
 
-#endif // STMT_H__TOSTITOS
+#endif // STMT_H__TOSLANG

@@ -1,5 +1,5 @@
-#ifndef SYMBOL_TABLE_H__TOSTITOS
-#define SYMBOL_TABLE_H__TOSTITOS
+#ifndef SYMBOL_TABLE_H__TOSLANG
+#define SYMBOL_TABLE_H__TOSLANG
 
 #include "symbol.h"
 
@@ -55,4 +55,4 @@ namespace TosLang
     }
 }
 
-#endif // SYMBOL_TABLE_H__TOSTITOS
+#endif // SYMBOL_TABLE_H__TOSLANG

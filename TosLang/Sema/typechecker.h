@@ -1,5 +1,5 @@
-#ifndef TYPE_CHECKER_H__TOSTITOS
-#define TYPE_CHECKER_H__TOSTITOS
+#ifndef TYPE_CHECKER_H__TOSLANG
+#define TYPE_CHECKER_H__TOSLANG
 
 #include "../Common/astvisitor.h"
 #include "../Common/type.h"
@@ -71,4 +71,4 @@ namespace TosLang
     }
 }
 
-#endif // TYPE_CHECKER_H__TOSTITOS
+#endif // TYPE_CHECKER_H__TOSLANG

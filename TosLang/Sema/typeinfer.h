@@ -1,5 +1,5 @@
-#ifndef TYPE_INFER_H__TOSTITOS
-#define TYPE_INFER_H__TOSTITOS
+#ifndef TYPE_INFER_H__TOSLANG
+#define TYPE_INFER_H__TOSLANG
 
 #include "../Common/astvisitor.h"
 #include "symboltable.h"
@@ -38,4 +38,4 @@ namespace TosLang
     }
 }
 
-#endif // TYPE_INFER_H__TOSTITOS
+#endif // TYPE_INFER_H__TOSLANG

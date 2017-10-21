@@ -1,5 +1,5 @@
-#ifndef LEXER_H__TOSTITOS
-#define LEXER_H__TOSTITOS
+#ifndef LEXER_H__TOSLANG
+#define LEXER_H__TOSLANG
 
 #include "../Common/type.h"
 #include "../Utils/sourceloc.h"
@@ -130,4 +130,4 @@ namespace TosLang
     }
 }
 
-#endif // LEXER_H__TOSTITOS
+#endif // LEXER_H__TOSLANG

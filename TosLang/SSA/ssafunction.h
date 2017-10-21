@@ -1,5 +1,5 @@
-#ifndef SSA_FUNCTION__TOSTITOS
-#define SSA_FUNCTION__TOSTITOS
+#ifndef SSA_FUNCTION__TOSLANG
+#define SSA_FUNCTION__TOSLANG
 
 #include "ssainstruction.h"
 #include "../CFG/controlflowgraph.h"
@@ -51,4 +51,4 @@ namespace TosLang
     }
 }
 
-#endif // SSA_FUNCTION__TOSTITOS
+#endif // SSA_FUNCTION__TOSLANG

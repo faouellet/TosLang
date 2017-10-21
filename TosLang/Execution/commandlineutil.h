@@ -1,5 +1,5 @@
-#ifndef COMMAND_LINE_UTIL_H__TOSTITOS
-#define COMMAND_LINE_UTIL_H__TOSTITOS
+#ifndef COMMAND_LINE_UTIL_H__TOSLANG
+#define COMMAND_LINE_UTIL_H__TOSLANG
 
 #include <iostream>
 #include <string>
@@ -98,4 +98,4 @@ namespace Execution
     }
 }
 
-#endif // COMMAND_LINE_UTIL_H__TOSTITOS
+#endif // COMMAND_LINE_UTIL_H__TOSLANG

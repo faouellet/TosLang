@@ -1,5 +1,5 @@
-#ifndef AST_H__TOSTITOS
-#define AST_H__TOSTITOS
+#ifndef AST_H__TOSLANG
+#define AST_H__TOSLANG
 
 #include "../Utils/sourceloc.h"
 
@@ -123,4 +123,4 @@ namespace TosLang
     }
 }
 
-#endif // AST_H__TOSTITOS
+#endif // AST_H__TOSLANG

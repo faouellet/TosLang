@@ -1,5 +1,5 @@
-#ifndef BASIC_BLOCK__TOSTITOS
-#define BASIC_BLOCK__TOSTITOS
+#ifndef BASIC_BLOCK__TOSLANG
+#define BASIC_BLOCK__TOSLANG
 
 #include <algorithm>
 #include <memory>
@@ -166,4 +166,4 @@ namespace TosLang
     }
 }
 
-#endif // BASIC_BLOCK__TOSTITOS
+#endif // BASIC_BLOCK__TOSLANG

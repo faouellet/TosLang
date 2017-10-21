@@ -1,5 +1,5 @@
-#ifndef AST_READER_H__TOSTITOS
-#define AST_READER_H__TOSTITOS
+#ifndef AST_READER_H__TOSLANG
+#define AST_READER_H__TOSLANG
 
 #include "../AST/ast.h"
 
@@ -69,4 +69,4 @@ namespace TosLang
     }
 }
 
-#endif // AST_READER_H__TOSTITOS
+#endif // AST_READER_H__TOSLANG

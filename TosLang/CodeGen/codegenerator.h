@@ -1,5 +1,5 @@
-#ifndef CODE_GENERATOR_H__TOSTITOS
-#define CODE_GENERATOR_H__TOSTITOS
+#ifndef CODE_GENERATOR_H__TOSLANG
+#define CODE_GENERATOR_H__TOSLANG
 
 #include "../Common/cfgvisitor.h"
 
@@ -16,4 +16,4 @@ namespace TosLang
     }
 }
 
-#endif // CODE_GENERATOR_H__TOSTITOS
+#endif // CODE_GENERATOR_H__TOSLANG

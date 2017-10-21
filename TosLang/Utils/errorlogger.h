@@ -1,5 +1,5 @@
-#ifndef ERROR_LOGGER_H__TOSTITOS
-#define ERROR_LOGGER_H__TOSTITOS
+#ifndef ERROR_LOGGER_H__TOSLANG
+#define ERROR_LOGGER_H__TOSLANG
 
 #include <string>
 #include <type_traits>
@@ -148,4 +148,4 @@ namespace TosLang
     }
 }
 
-#endif // ERROR_LOGGER_H__TOSTITOS
+#endif // ERROR_LOGGER_H__TOSLANG

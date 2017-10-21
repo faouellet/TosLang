@@ -1,5 +1,5 @@
-#ifndef SYMBOL_H__TOSTITOS
-#define SYMBOL_H__TOSTITOS
+#ifndef SYMBOL_H__TOSLANG
+#define SYMBOL_H__TOSLANG
 
 #include "../Common/type.h"
 
@@ -152,4 +152,4 @@ namespace TosLang
     }
 }
 
-#endif // SYMBOL_H__TOSTITOS
+#endif // SYMBOL_H__TOSLANG

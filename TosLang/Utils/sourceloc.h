@@ -1,5 +1,5 @@
-#ifndef SOURCE_LOC_H__TOSTITOS
-#define SOURCE_LOC_H__TOSTITOS
+#ifndef SOURCE_LOC_H__TOSLANG
+#define SOURCE_LOC_H__TOSLANG
 
 namespace TosLang
 {
@@ -52,4 +52,4 @@ namespace TosLang
     }
 }
 
-#endif // SOURCE_LOC_H__TOSTITOS
+#endif // SOURCE_LOC_H__TOSLANG

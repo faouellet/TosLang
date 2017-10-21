@@ -1,5 +1,5 @@
-#ifndef TOSLANG_CODEGEN_FIXTURE_H__TOSTITOS
-#define TOSLANG_CODEGEN_FIXTURE_H__TOSTITOS
+#ifndef TOSLANG_CODEGEN_FIXTURE_H__TOSLANG
+#define TOSLANG_CODEGEN_FIXTURE_H__TOSLANG
 
 #include "AST/ast.h"
 //#include "CodeGen/instructionselector.h"
@@ -57,4 +57,4 @@ struct TosLangCodegenFixture
     TosLang::Utils::ASTReader reader;       /*!< Use to acquire ASTs stored in files */
 };
 
-#endif // TOSLANG_CODEGEN_FIXTURE_H__TOSTITOS
+#endif // TOSLANG_CODEGEN_FIXTURE_H__TOSLANG

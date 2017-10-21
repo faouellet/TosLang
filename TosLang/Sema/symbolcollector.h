@@ -1,5 +1,5 @@
-#ifndef SYMBOL_COLLECTOR_H__TOSTITOS
-#define SYMBOL_COLLECTOR_H__TOSTITOS
+#ifndef SYMBOL_COLLECTOR_H__TOSLANG
+#define SYMBOL_COLLECTOR_H__TOSLANG
 
 #include "../Common/astvisitor.h"
 #include "symboltable.h"
@@ -48,4 +48,4 @@ namespace TosLang
     }
 }
 
-#endif // SYMBOL_COLLECTOR_H__TOSTITOS
+#endif // SYMBOL_COLLECTOR_H__TOSLANG

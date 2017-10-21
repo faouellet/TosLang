@@ -1,5 +1,5 @@
-#ifndef REGISTER_ALLOCATOR_H__TOSTITOS
-#define REGISTER_ALLOCATOR_H__TOSTITOS
+#ifndef REGISTER_ALLOCATOR_H__TOSLANG
+#define REGISTER_ALLOCATOR_H__TOSLANG
 
 #include "../Common/cfgvisitor.h"
 
@@ -39,4 +39,4 @@ namespace TosLang
     }
 }
 
-#endif // REGISTER_ALLOCATOR_H__TOSTITOS
+#endif // REGISTER_ALLOCATOR_H__TOSLANG

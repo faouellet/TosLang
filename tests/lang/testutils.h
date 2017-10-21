@@ -1,5 +1,5 @@
-#ifndef TOSLANG_TEST_UTILS_FIXTURE_H__TOSTITOS
-#define TOSLANG_TEST_UTILS_FIXTURE_H__TOSTITOS
+#ifndef TOSLANG_TEST_UTILS_FIXTURE_H__TOSLANG
+#define TOSLANG_TEST_UTILS_FIXTURE_H__TOSLANG
 
 #include <boost/test/unit_test.hpp>
 
@@ -27,4 +27,4 @@ inline void CompareFiles(const std::string& testFile, const std::string& expecte
     }
 }
 
-#endif // TOSLANG_TEST_UTILS_FIXTURE_H__TOSTITOS
+#endif // TOSLANG_TEST_UTILS_FIXTURE_H__TOSLANG

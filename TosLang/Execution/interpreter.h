@@ -1,5 +1,5 @@
-#ifndef INTERPRETER_H__TOSTITOS
-#define INTERPRETER_H__TOSTITOS
+#ifndef INTERPRETER_H__TOSLANG
+#define INTERPRETER_H__TOSLANG
 
 // TODO: Comments
 
@@ -45,4 +45,4 @@ namespace Execution
     };
 }
 
-#endif // INTERPRETER_H__TOSTITOS
+#endif // INTERPRETER_H__TOSLANG

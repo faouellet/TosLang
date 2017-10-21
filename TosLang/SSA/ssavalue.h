@@ -1,5 +1,5 @@
-#ifndef SSA_VALUE__TOSTITOS
-#define SSA_VALUE__TOSTITOS
+#ifndef SSA_VALUE__TOSLANG
+#define SSA_VALUE__TOSLANG
 
 #include <iostream>
 
@@ -47,4 +47,4 @@ namespace TosLang
     }
 }
 
-#endif //SSA_VALUE__TOSTITOS
+#endif //SSA_VALUE__TOSLANG

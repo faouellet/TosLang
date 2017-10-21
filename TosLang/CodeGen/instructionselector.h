@@ -1,5 +1,5 @@
-#ifndef INSTRUCTION_SELECTOR_H__TOSTITOS
-#define INSTRUCTION_SELECTOR_H__TOSTITOS
+#ifndef INSTRUCTION_SELECTOR_H__TOSLANG
+#define INSTRUCTION_SELECTOR_H__TOSLANG
 
 #include "../CFG/module.h"
 #include "../Sema/symboltable.h"
@@ -100,5 +100,5 @@ namespace TosLang
     }
 }
 
-#endif // INSTRUCTION_SELECTOR_H__TOSTITOS
+#endif // INSTRUCTION_SELECTOR_H__TOSLANG
 

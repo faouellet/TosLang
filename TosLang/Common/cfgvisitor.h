@@ -1,5 +1,5 @@
-#ifndef CFG_VISITOR_H__TOSTITOS
-#define CFG_VISITOR_H__TOSTITOS
+#ifndef CFG_VISITOR_H__TOSLANG
+#define CFG_VISITOR_H__TOSLANG
 
 #include "../CFG/controlflowgraph.h"
 
@@ -91,4 +91,4 @@ namespace TosLang
     }
 }
 
-#endif //CFG_VISITOR_H__TOSTITOS
+#endif //CFG_VISITOR_H__TOSLANG

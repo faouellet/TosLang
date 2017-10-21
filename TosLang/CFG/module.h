@@ -1,5 +1,5 @@
-#ifndef MODULE__TOSTITOS
-#define MODULE__TOSTITOS
+#ifndef MODULE__TOSLANG
+#define MODULE__TOSLANG
 
 #include "controlflowgraph.h"
 
@@ -104,4 +104,4 @@ namespace TosLang
     }
 }
 
-#endif // MODULE__TOSTITOS
+#endif // MODULE__TOSLANG

@@ -1,5 +1,5 @@
-#ifndef DECL_H__TOSTITOS
-#define DECL_H__TOSTITOS
+#ifndef DECL_H__TOSLANG
+#define DECL_H__TOSLANG
 
 #include "ast.h"
 #include "expressions.h"
@@ -220,4 +220,4 @@ namespace TosLang
     }
 }
 
-#endif // DECL_H__TOSTITOS
+#endif // DECL_H__TOSLANG

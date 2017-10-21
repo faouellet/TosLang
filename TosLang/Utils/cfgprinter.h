@@ -1,5 +1,5 @@
-#ifndef CFG_PRINTER_H__TOSTITOS
-#define CFG_PRINTER_H__TOSTITOS
+#ifndef CFG_PRINTER_H__TOSLANG
+#define CFG_PRINTER_H__TOSLANG
 
 #include "../Common/cfgvisitor.h"
 
@@ -35,4 +35,4 @@ namespace TosLang
     }
 }
 
-#endif //CFG_PRINTER_H__TOSTITOS
+#endif //CFG_PRINTER_H__TOSLANG

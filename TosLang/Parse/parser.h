@@ -1,5 +1,5 @@
-#ifndef PARSER_H__TOSTITOS
-#define PARSER_H__TOSTITOS
+#ifndef PARSER_H__TOSLANG
+#define PARSER_H__TOSLANG
 
 #include "lexer.h"
 
@@ -63,4 +63,4 @@ namespace TosLang
     }
 }
 
-#endif // PARSER_H__TOSTITOS
+#endif // PARSER_H__TOSLANG

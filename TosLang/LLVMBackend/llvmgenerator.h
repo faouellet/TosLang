@@ -1,5 +1,5 @@
 #ifndef LLVM_GENERATOR_H__TOSTITO
-#define LLVM_GENERATOR_H__TOSTITOS
+#define LLVM_GENERATOR_H__TOSLANG
 
 #include "../Sema/symboltable.h"
 
@@ -67,5 +67,5 @@ namespace TosLang
     }
 }
 
-#endif // LLVM_GENERATOR_H__TOSTITOS
+#endif // LLVM_GENERATOR_H__TOSLANG
 

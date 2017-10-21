@@ -1,5 +1,5 @@
-#ifndef COMPILER__TOSTITOS
-#define COMPILER__TOSTITOS
+#ifndef COMPILER__TOSLANG
+#define COMPILER__TOSLANG
 
 #include <memory>
 #include <string>
@@ -102,4 +102,4 @@ namespace Execution
     };
 }
 
-#endif // COMPILER__TOSTITOS
+#endif // COMPILER__TOSLANG

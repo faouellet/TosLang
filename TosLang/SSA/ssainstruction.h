@@ -1,5 +1,5 @@
-#ifndef SSA_INSTRUCTION__TOSTITOS
-#define SSA_INSTRUCTION__TOSTITOS
+#ifndef SSA_INSTRUCTION__TOSLANG
+#define SSA_INSTRUCTION__TOSLANG
 
 #include "ssavalue.h"
 
@@ -104,4 +104,4 @@ namespace TosLang
     }
 }
 
-#endif //SSA_INSTRUCTION__TOSTITOS
+#endif //SSA_INSTRUCTION__TOSLANG

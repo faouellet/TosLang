@@ -1,5 +1,5 @@
-#ifndef CONTROL_FLOW_GRAPH__TOSTITOS
-#define CONTROL_FLOW_GRAPH__TOSTITOS
+#ifndef CONTROL_FLOW_GRAPH__TOSLANG
+#define CONTROL_FLOW_GRAPH__TOSLANG
 
 #include "basicblock.h"
 
@@ -66,4 +66,4 @@ namespace TosLang
     }
 }
 
-#endif // CONTROL_FLOW_GRAPH__TOSTITOS
+#endif // CONTROL_FLOW_GRAPH__TOSLANG

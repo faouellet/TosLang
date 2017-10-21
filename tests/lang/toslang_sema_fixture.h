@@ -1,5 +1,5 @@
-#ifndef TOSLANG_SEMA_FIXTURE_H__TOSTITOS
-#define TOSLANG_SEMA_FIXTURE_H__TOSTITOS
+#ifndef TOSLANG_SEMA_FIXTURE_H__TOSLANG
+#define TOSLANG_SEMA_FIXTURE_H__TOSLANG
 
 #include "AST/ast.h"
 #include "Sema/symbolcollector.h"
@@ -98,4 +98,4 @@ struct TosLangSemaFixture
 };
 
 
-#endif // TOSLANG_SEMA_FIXTURE_H__TOSTITOS
+#endif // TOSLANG_SEMA_FIXTURE_H__TOSLANG
