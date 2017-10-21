@@ -120,7 +120,7 @@ script:
   - export CXX=$COMPILER
   - mkdir build
   - cd build
-  - cmake -DCMAKE_BUILD_TYPE=$CONFIG -DCMAKE_CXX_COMPILER=$COMPILER ..
+  - cmake -DCMAKE_BUILD_TYPE=Release ..
   - make
   - ctest
   #- python testrunner.py ${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}
