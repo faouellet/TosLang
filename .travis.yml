@@ -77,19 +77,29 @@ install:
     fi
 
   # Getting Boost for testing
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libboost-test-dev; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install boost; fi
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then 
+      sudo apt-get install libboost-test-dev; 
+    elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+      brew install boost; 
+    fi
 
   # Getting CMake for building
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install cmake; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade cmake || brew install cmake; fi
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then 
+      sudo apt-get install cmake; 
+    elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+      brew upgrade cmake || brew install cmake; 
+    fi
 
   # Getting Doxygen for documentation
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install doxygen; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install doxygen; fi
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      sudo apt-get install doxygen; 
+    elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+      brew install doxygen; 
+    fi
   
-  - "${LLVM_VERSION}"
-
   - |
     if [[ "${LLVM_VERSION}" != "" ]]; then
       LLVM_DIR=${DEPS_DIR}/llvm-${LLVM_VERSION}
