@@ -64,29 +64,21 @@ matrix:
       osx_image: xcode8
 
 
-# Addons for the Coverity static analysis service
-addons:
-  coverity_scan:
-    project:
-      name: "faouellet/TosLang"
-      description: "Build submitted via Travis CI"
-    notification_email: faouellet@gmail.com
-    build_command_prepend: "mkdir build; cd build; cmake .."
-    build_command: "make"
-    branch_pattern: coverity_scan
-
-
 install:
   # Installing a recent version of Ruby (needed for Homebrew)
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      rvm use 2.1 --install --binary --fuzzy
+      rvm use 2.3 --install --binary --fuzzy
       gem install ruby-progressbar tilt
     fi
 
   # Getting Boost for testing
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libboost-test-dev; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install boost; fi
+
+  # Getting CMake for building
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install cmake; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade cmake || brew install cmake; fi
 
   # Getting Doxygen for documentation
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install doxygen; fi
