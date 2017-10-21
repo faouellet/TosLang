@@ -116,7 +116,8 @@ before_script:
     fi
 
 
-script:    
+script:
+  - export CXX=$COMPILER
   - mkdir build
   - cd build
   - cmake -DCMAKE_BUILD_TYPE=$CONFIG -DCMAKE_CXX_COMPILER=$COMPILER ..
