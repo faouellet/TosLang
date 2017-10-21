@@ -4,24 +4,6 @@ sudo: false
 
 matrix:
   include:
-    # Clang 3.7
-    - os: linux
-      env: COMPILER=clang++-3.7
-      compiler: clang
-      addons:
-      apt:
-        packages:
-          - clang++-3.7
-
-    # Clang 3.8
-    - os: linux
-      env: COMPILER=clang++-3.8
-      compiler: clang
-      addons:
-      apt:
-        packages:
-          - clang++-3.8
-
     # Clang 3.9
     - os: linux
       env: COMPILER=clang++-3.9
@@ -30,6 +12,24 @@ matrix:
       apt:
         packages:
           - clang++-3.9
+
+    # Clang 4.0
+    - os: linux
+      env: COMPILER=clang++-4.0
+      compiler: clang
+      addons:
+      apt:
+        packages:
+          - clang++-4.0
+
+    # Clang 5.0
+    - os: linux
+      env: COMPILER=clang++-5.0
+      compiler: clang
+      addons:
+      apt:
+        packages:
+          - clang++-5.0
 
     # GCC 5
     - os: linux
@@ -117,9 +117,9 @@ before_script:
 
 
 script:
-  - export CXX=$COMPILER
   - mkdir build
   - cd build
+  - export CXX=${COMPILER}
   - cmake -DCMAKE_BUILD_TYPE=Release ..
   - make
   - ctest
