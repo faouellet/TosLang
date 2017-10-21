@@ -51,6 +51,12 @@ SymbolCollector::SymbolCollector(const std::shared_ptr<SymbolTable>& symTab)
     };
 }
 
+/*
+* \fn           Run
+* \param root   Root of the tree to print
+* \brief        Recursively walk the tree rooted at root to collect symbols for the symbol table
+* \return       Number of errors encountered during symbol collecting
+*/
 size_t SymbolCollector::Run(const std::unique_ptr<ASTNode>& root)
 {
     mErrorCount = 0;
@@ -64,6 +70,10 @@ size_t SymbolCollector::Run(const std::unique_ptr<ASTNode>& root)
     return mErrorCount;
 }
 
+/*
+* \fn       HandleFunctionDecl
+* \brief    Collects symbols related to a function
+*/
 void SymbolCollector::HandleFunctionDecl() 
 {
     const FunctionDecl* fnDecl = static_cast<const FunctionDecl*>(mCurrentNode);
@@ -99,6 +109,10 @@ void SymbolCollector::HandleFunctionDecl()
     }
 }
 
+/*
+* \fn       HandleParamVarDecl
+* \brief    Collects symbols related to a function's parameters
+*/
 void SymbolCollector::HandleParamVarDecl() 
 {
     const ParamVarDecls* paramDecl = static_cast<const ParamVarDecls*>(mCurrentNode);
@@ -122,6 +136,10 @@ void SymbolCollector::HandleParamVarDecl()
     }
 }
 
+/*
+* \fn       HandleVarDecl
+* \brief    Collects symbols related to a variable
+*/
 void SymbolCollector::HandleVarDecl() 
 {
     const VarDecl* varDecl = static_cast<const VarDecl*>(mCurrentNode);
@@ -144,6 +162,10 @@ void SymbolCollector::HandleVarDecl()
     }
 }
 
+/*
+* \fn       HandleCallExpr
+* \brief    Verify if the function called was declared
+*/
 void SymbolCollector::HandleCallExpr()
 {
     const CallExpr* cExpr = static_cast<const CallExpr*>(this->mCurrentNode);
@@ -156,6 +178,10 @@ void SymbolCollector::HandleCallExpr()
     }
 }
 
+/*
+* \fn       HandleIdentifierExpr
+* \brief    Associates a variable use with a variable definition
+*/
 void SymbolCollector::HandleIdentifierExpr()
 {
     const IdentifierExpr* iExpr = static_cast<const IdentifierExpr*>(this->mCurrentNode);

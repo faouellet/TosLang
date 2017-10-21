@@ -27,17 +27,7 @@ namespace TosLang
             SourceLocation(const unsigned line, const unsigned column) : mCurrentLine{ line }, mCurrentColumn { column } { }
 
         public:
-            /*
-            * \fn       Init
-            * \brief    Initializes the SourceLocation to a valid state representing the start of a file
-            */
             void Init();
-
-            /*
-            * \fn               Advance
-            * \brief            Advances the SourceLocation to in the source file
-            * \param nextLine   Will advancing change the current line?
-            */
             void Advance(bool nextLine = false);
 
         public:

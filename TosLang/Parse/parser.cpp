@@ -15,6 +15,12 @@ using namespace TosLang::Utils;
 
 static Operation TokenToOpcode(Lexer::Token tok);
 
+/*
+* \fn               ParseProgram
+* \brief            Generate an AST from
+* \param filename   Name of a TosLang file
+* \return           Root node of the AST
+*/
 std::unique_ptr<ASTNode> Parser::ParseProgram(const std::string& filename)
 {
     if (filename.substr(filename.size() - 4) != ".tos")
@@ -32,6 +38,11 @@ std::unique_ptr<ASTNode> Parser::ParseProgram(const std::string& filename)
     return ParseProgramDecl();
 }
 
+/*
+* \fn       ParseProgramDecl
+* \brief    programdecl ::= decls
+* \return   A node representing a program
+*/
 std::unique_ptr<ASTNode> Parser::ParseProgramDecl()
 {
     auto programNode = std::make_unique<ProgramDecl>();
@@ -70,6 +81,11 @@ std::unique_ptr<ASTNode> Parser::ParseProgramDecl()
     return std::move(programNode);
 }
 
+/*
+* \fn       ParseFunctionDecl
+* \brief    functiondecl ::= 'fn' identifierexpr '(' ( vardecl, )* ')' '->' typeexpr compoundstmt
+* \return   A node representing a function declaration or definition
+*/
 std::unique_ptr<FunctionDecl> Parser::ParseFunctionDecl()
 {
     std::unique_ptr<FunctionDecl> fnNode = std::make_unique<FunctionDecl>();
@@ -166,6 +182,11 @@ std::unique_ptr<FunctionDecl> Parser::ParseFunctionDecl()
     return fnNode;
 }
 
+/*
+* \fn       ParseVarDecl
+* \brief    vardecl ::= 'var' identifierexpr ':' typeexpr ( '=' expr )? ';'
+* \return   A node representing a variable declaration with potentially an initializing expression
+*/
 std::unique_ptr<VarDecl> Parser::ParseVarDecl()
 {
     std::unique_ptr<VarDecl> node = std::make_unique<VarDecl>();
@@ -236,6 +257,19 @@ std::unique_ptr<VarDecl> Parser::ParseVarDecl()
     }
 }
 
+/*
+* \fn       ParseExpr
+* \brief    expr 
+*               ::= arrayexpr
+*               ::= binopexpr
+*               ::= booleanexpr
+*               ::= identifierexpr
+*               ::= indexedexpr
+*               ::= numberexpr
+*               ::= spawnexpr
+*               ::= stringexpr
+* \return   A node representing an expression
+*/
 std::unique_ptr<Expr> Parser::ParseExpr()
 {
     std::unique_ptr<Expr> node;
@@ -335,6 +369,15 @@ std::unique_ptr<Expr> Parser::ParseExpr()
     return nullptr;
 }
 
+/*
+* \fn           ParseArrayExpr
+* \brief        arrayexpr 
+*                   ::= '{' '}'
+*                   ::= '{' expr(',' expr)* '}'
+* \param lhs    The left hand side expression of the binary expression
+* \param op     The operation in the binary expression
+* \return       A node representing a binary expression
+*/
 std::unique_ptr<Expr> Parser::ParseArrayExpr()
 {
     const SourceLocation srcLoc = mLexer.GetCurrentLocation();
@@ -369,6 +412,13 @@ std::unique_ptr<Expr> Parser::ParseArrayExpr()
     return aExpr;
 }
 
+/*
+* \fn           ParseBinaryOpExpr
+* \brief        binopexpr ::= expr OP expr
+* \param lhs    The left hand side expression of the binary expression
+* \param op     The operation in the binary expression
+* \return       A node representing a binary expression 
+*/
 std::unique_ptr<Expr> Parser::ParseBinaryOpExpr(Lexer::Token op, std::unique_ptr<Expr>&& lhs)
 {
     // Parse the right-hand side of the expression. It is assumed that the left-hand side of the expression has been parsed.
@@ -388,6 +438,13 @@ std::unique_ptr<Expr> Parser::ParseBinaryOpExpr(Lexer::Token op, std::unique_ptr
     }
 }
 
+/*
+* \fn                   ParseCallExpr
+* \brief                callexpr ::= identifierexpr '(' expr* ')'
+* \param fn             The function to be called
+* \param isSpawnedExpr  Is this a regular function call or one that'll spawn a thread?
+* \return               A node representing function call expression
+*/
 std::unique_ptr<Expr> Parser::ParseCallExpr(std::unique_ptr<Expr>&& fn, bool isSpawnedExpr)
 {
     std::unique_ptr<Expr> cExpr;
@@ -436,6 +493,11 @@ std::unique_ptr<Expr> Parser::ParseCallExpr(std::unique_ptr<Expr>&& fn, bool isS
     return cExpr;
 }
 
+/*
+* \fn           ParseCompoundStmt
+* \brief        compoundstmt ::= '{' stmt* '}'
+* \return       A node representing a compound statement i.e. an aggregation of statements
+*/
 std::unique_ptr<CompoundStmt> Parser::ParseCompoundStmt()
 {
     // The compound statement should begin with a left brace
@@ -515,6 +577,11 @@ std::unique_ptr<CompoundStmt> Parser::ParseCompoundStmt()
     return cStmt;
 }
 
+/*
+* \fn           ParseIfStmt
+* \brief        ifstmt ::= 'if' expr compoundstmt
+* \return       A node representing an if statement
+*/
 std::unique_ptr<IfStmt> Parser::ParseIfStmt()
 {
     std::unique_ptr<IfStmt> ifStmt = std::make_unique<IfStmt>();
@@ -536,6 +603,11 @@ std::unique_ptr<IfStmt> Parser::ParseIfStmt()
     return ifStmt;
 }
 
+/*
+* \fn           ParsePrintStmt
+* \brief        printstmt ::= 'print' expr
+* \return       A node representing a print statement
+*/
 std::unique_ptr<PrintStmt> Parser::ParsePrintStmt()
 {
     std::unique_ptr<PrintStmt> pStmt = std::make_unique<PrintStmt>(mLexer.GetCurrentLocation());
@@ -559,6 +631,11 @@ std::unique_ptr<PrintStmt> Parser::ParsePrintStmt()
     return pStmt;
 }
 
+/*
+* \fn           ParseReturnStmt
+* \brief        'return' expr? ';'
+* \return       A node representing a return statement
+*/
 std::unique_ptr<ReturnStmt> Parser::ParseReturnStmt()
 {
     auto rStmt = std::make_unique<ReturnStmt>(mLexer.GetCurrentLocation());
@@ -573,6 +650,11 @@ std::unique_ptr<ReturnStmt> Parser::ParseReturnStmt()
     return rStmt;
 }
 
+/*
+* \fn           ParseScanStmt
+* \brief        scanstmt ::= 'scan' identifierexpr
+* \return       A node representing a scan statement
+*/
 std::unique_ptr<ScanStmt> Parser::ParseScanStmt()
 {
     std::unique_ptr<ScanStmt> sStmt = std::make_unique<ScanStmt>();
@@ -592,6 +674,11 @@ std::unique_ptr<ScanStmt> Parser::ParseScanStmt()
     return sStmt;
 }
 
+/*
+* \fn           ParseSleepStmt
+* \brief        sleepstmt ::= 'sleep' expr
+* \return       A node representing a sleep statement
+*/
 std::unique_ptr<SleepStmt> Parser::ParseSleepStmt()
 {
     std::unique_ptr<SleepStmt> sStmt = std::make_unique<SleepStmt>();
@@ -609,6 +696,11 @@ std::unique_ptr<SleepStmt> Parser::ParseSleepStmt()
     return sStmt;
 }
 
+/*
+* \fn           ParseWhileStmt
+* \brief        whilestmt ::= 'while' expr compoundstmt
+* \return       A node representing a while statement
+*/
 std::unique_ptr<WhileStmt> Parser::ParseWhileStmt()
 {
     std::unique_ptr<WhileStmt> whileStmt = std::make_unique<WhileStmt>();
@@ -629,6 +721,13 @@ std::unique_ptr<WhileStmt> Parser::ParseWhileStmt()
     return whileStmt;
 }
 
+/*
+* \fn                       ParseArrayType
+* \brief                    Parses an array type specification
+* \param[OUT]    arraySize  Size of the array
+* \param[IN/OUT] arrayType  Type of the array
+* \return                   Success
+*/
 bool Parser::ParseArrayType(int& arraySize, Type& arrayType)
 {
     arrayType = GetArrayVersion(arrayType);

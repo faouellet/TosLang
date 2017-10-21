@@ -8,6 +8,12 @@
 
 using namespace TosLang::FrontEnd;
 
+/*
+* \fn               Init
+* \brief            Initialize the lexer by acquiring the content of a TosLang file
+* \param filename   Name of a file containing a TosLang program
+* \return           Has the initialization been successful?
+*/
 bool Lexer::Init(const std::string& filename)
 {
     std::ifstream stream(filename);
@@ -21,6 +27,11 @@ bool Lexer::Init(const std::string& filename)
     return false;
 }
 
+/*
+* \fn       GetNextToken
+* \brief    Get the next token in the program
+* \return   A TosLang token
+*/
 Lexer::Token Lexer::GetNextToken()
 {
     // Skipping any whitespaces

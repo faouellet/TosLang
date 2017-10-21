@@ -41,26 +41,10 @@ namespace TosLang
         class ASTReader
         {
         public:
-            /*
-            * \fn       ASTReader
-            * \brief    Ctor
-            */
             ASTReader();
-
-            /*
-            * \fn               Run
-            * \brief            Creates an AST from the contents of an .ast file
-            * \param filename   Name of an .ast file
-            * \return           Root node of the generated AST
-            */
             std::unique_ptr<FrontEnd::ASTNode> Run(const std::string& filename);
 
         private:
-            /*
-            * \fn       ReadSourceLocation
-            * \brief    Reads the source location information on the current line
-            * \return   Source location of an AST node
-            */
             const SourceLocation ReadSourceLocation();
 
         private:

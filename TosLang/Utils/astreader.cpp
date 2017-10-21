@@ -14,6 +14,10 @@ using namespace TosLang::Utils;
 
 // TODO: Modify the AST printer and the AST reader to handle array variables
 
+/*
+* \fn       ASTReader
+* \brief    Ctor
+*/
 ASTReader::ASTReader() : mStream{}, mCurrentLine{}, mSrcLocRegex{ ".*SrcLoc: ([1-9][0-9]*), ([1-9][0-9]*)" }
 {
     // TODO: Should be a constexpr member variable
@@ -42,6 +46,12 @@ ASTReader::ASTReader() : mStream{}, mCurrentLine{}, mSrcLocRegex{ ".*SrcLoc: ([1
     mNodeKindRegexes[ASTNode::NodeKind::WHILE_STMT]         = std::regex("\t+WhileStmt.*");
 }
 
+/*
+* \fn               Run
+* \brief            Creates an AST from the contents of an .ast file
+* \param filename   Name of an .ast file
+* \return           Root node of the generated AST
+*/
 std::unique_ptr<ASTNode> ASTReader::Run(const std::string& filename)
 {
     mStream.open(filename);
@@ -73,6 +83,11 @@ std::unique_ptr<ASTNode> ASTReader::Run(const std::string& filename)
     return std::move(astRoot);
 }
 
+/*
+* \fn       ReadSourceLocation
+* \brief    Reads the source location information on the current line
+* \return   Source location of an AST node
+*/
 const SourceLocation ASTReader::ReadSourceLocation()
 {
     std::smatch match;

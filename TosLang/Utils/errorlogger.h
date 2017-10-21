@@ -135,19 +135,7 @@ namespace TosLang
             ~ErrorLogger() = default;
 
         public:
-            /*
-            * \fn           PrintError
-            * \param eType  Type of error to log
-            * \brief        Logs the error of the type eType to the stderr
-            */
             static void PrintError(ErrorType eType);
-            
-            /*
-            * \fn           PrintErrorAtLocation
-            * \param eType  Type of error to log
-            * \param srcLoc Location in the source code where the error happened
-            * \brief        Logs the error of the type eType with source location information to the stderr
-            */
             static void PrintErrorAtLocation(ErrorType eType, const SourceLocation& srcLoc);
 
         private:

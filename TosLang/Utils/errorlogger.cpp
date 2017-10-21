@@ -100,11 +100,22 @@ std::unordered_map<ErrorLogger::ErrorType, std::string, ErrorLogger::ErrorTypeHa
     { ErrorType::WHILE_MISSING_COND,            "WHILE ERROR: Missing while condition" },
 };
 
+/*
+* \fn           PrintError
+* \param eType  Type of error to log
+* \brief        Logs the error of the type eType to the stderr
+*/
 void ErrorLogger::PrintError(ErrorType eType)
 {
     std::cerr << mErrorMessages[eType] << std::endl;
 }
 
+/*
+* \fn           PrintErrorAtLocation
+* \param eType  Type of error to log
+* \param srcLoc Location in the source code where the error happened
+* \brief        Logs the error of the type eType with source location information to the stderr
+*/
 void ErrorLogger::PrintErrorAtLocation(ErrorType eType, const SourceLocation& srcLoc)
 {
     std::cerr << mErrorMessages[eType] << " at line " << srcLoc.GetCurrentLine() << ", column " << srcLoc.GetCurrentColumn() << std::endl;

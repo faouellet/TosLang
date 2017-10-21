@@ -85,19 +85,7 @@ namespace TosLang
             Lexer() : mCurrentType{ Common::Type::ERROR }, mCurrentNumber{ 0 }, mLoc{ "" } { };
 
         public:
-            /*
-            * \fn               Init
-            * \brief            Initialize the lexer by acquiring the content of a TosLang file
-            * \param filename   Name of a file containing a TosLang program
-            * \return           Has the initialization been successful?
-            */
             bool Init(const std::string& filename);
-
-            /*
-            * \fn       GetNextToken
-            * \brief    Get the next token in the program
-            * \return   A TosLang token
-            */
             Token GetNextToken();
             
             /*

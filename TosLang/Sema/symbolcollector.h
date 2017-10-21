@@ -24,44 +24,15 @@ namespace TosLang
             explicit SymbolCollector(const std::shared_ptr<SymbolTable>& symTab);
 
         public:
-            /*
-            * \fn           Run
-            * \param root   Root of the tree to print
-            * \brief        Recursively walk the tree rooted at root to collect symbols for the symbol table
-            * \return       Number of errors encountered during symbol collecting
-            */
             size_t Run(const std::unique_ptr<ASTNode>& root);
 
         protected:  // Declarations
-            /*
-            * \fn       HandleFunctionDecl
-            * \brief    Collects symbols related to a function
-            */
             void HandleFunctionDecl();
-
-            /*
-            * \fn       HandleParamVarDecl
-            * \brief    Collects symbols related to a function's parameters
-            */
             void HandleParamVarDecl();
-            
-            /*
-            * \fn       HandleVarDecl
-            * \brief    Collects symbols related to a variable
-            */
             void HandleVarDecl();
 
         protected:  // Expression
-            /*
-            * \fn       HandleCallExpr
-            * \brief    Verify if the function called was declared
-            */
             void HandleCallExpr();
-
-            /*
-            * \fn       HandleIdentifierExpr
-            * \brief    Associates a variable use with a variable definition
-            */
             void HandleIdentifierExpr();
                         
         private:

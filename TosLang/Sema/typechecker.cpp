@@ -44,6 +44,13 @@ TypeChecker::TypeChecker()
     };
 }
 
+/*
+* \fn           Run
+* \brief        Recursively walk the tree rooted at root to check for type errors
+* \param root   Root of the tree to type check
+* \param symTab Symbol table associated with the given AST
+* \return       Number of errors encountered during type checking
+*/
 size_t TypeChecker::Run(const std::unique_ptr<ASTNode>& root, const std::shared_ptr<SymbolTable>& symTab)
 {
     // Cleanup before starting a new run
@@ -75,6 +82,13 @@ size_t TypeChecker::Run(const std::unique_ptr<ASTNode>& root, const std::shared_
     return mErrorCount;
 }
 
+/*
+* \fn               CheckExprEvaluateToType
+* \brief            Checks if the expression evaluates to a value of a given type
+* \param expr       The expression to be checked
+* \param type       The type to be matched
+* \return           True if the type of the expression matches the type given, else false
+*/
 bool TypeChecker::CheckExprEvaluateToType(const Expr* expr, Type type)
 {
     // In the most common case, we already know the type of the expression
